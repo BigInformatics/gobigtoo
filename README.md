@@ -39,14 +39,14 @@ cd gobig
 
 2. Install dependencies:
 ```bash
-# Using Bun (recommended) - generates bun.lockb
+# Using Bun (recommended) - generates bun.lock
 bun install
 
 # Or using npm (fallback) - generates package-lock.json
 npm install
 ```
 
-> **Note**: This project uses `bun.lockb` for dependency locking when using Bun. The `package-lock.json` is gitignored to avoid conflicts. If you use Bun, it will automatically create/update `bun.lockb`. If you use npm, it will create `package-lock.json` locally (gitignored).
+> **Note**: This project uses `bun.lock` for dependency locking when using Bun (v1.3+). The `package-lock.json` is gitignored to avoid conflicts. If you use Bun, it will automatically create/update `bun.lock`. If you use npm, it will create `package-lock.json` locally (gitignored).
 
 3. Set up environment variables:
 ```bash

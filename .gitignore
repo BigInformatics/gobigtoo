@@ -5,7 +5,7 @@ dist/
 # dependencies
 node_modules/
 
-# lock files - use bun.lockb instead of package-lock.json
+# lock files - use bun.lock instead of package-lock.json
 package-lock.json
 yarn.lock
 pnpm-lock.yaml
@@ -35,4 +35,3 @@ bun-debug.log*
 
 # temp
 .astro/
-bun.lockb.txt
