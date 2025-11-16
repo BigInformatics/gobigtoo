@@ -1,0 +1,115 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Sign Up - GoBig">
+  <div class="min-h-screen flex items-center justify-center bg-gray-900">
+    <div class="max-w-md w-full space-y-8 p-8 bg-gray-800 rounded-lg shadow-lg">
+      <div>
+        <h2 class="text-center text-3xl font-extrabold text-white">
+          Create your account
+        </h2>
+      </div>
+      <form id="signup-form" class="mt-8 space-y-6">
+        <div class="rounded-md shadow-sm -space-y-px">
+          <div>
+            <label for="name" class="sr-only">Full Name</label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              autocomplete="name"
+              required
+              class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-700 placeholder-gray-500 text-white bg-gray-700 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+              placeholder="Full Name"
+            />
+          </div>
+          <div>
+            <label for="email" class="sr-only">Email address</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              required
+              class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-700 placeholder-gray-500 text-white bg-gray-700 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+              placeholder="Email address"
+            />
+          </div>
+          <div>
+            <label for="password" class="sr-only">Password</label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              autocomplete="new-password"
+              required
+              class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-700 placeholder-gray-500 text-white bg-gray-700 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+              placeholder="Password"
+            />
+          </div>
+        </div>
+
+        <div id="error-message" class="text-red-500 text-sm hidden"></div>
+        <div id="success-message" class="text-green-500 text-sm hidden"></div>
+
+        <div>
+          <button
+            type="submit"
+            class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          >
+            Sign up
+          </button>
+        </div>
+
+        <div class="text-center">
+          <a href="/login" class="text-indigo-400 hover:text-indigo-300">
+            Already have an account? Sign in
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  import { authClient } from '../lib/auth-client';
+
+  const form = document.getElementById('signup-form') as HTMLFormElement;
+  const errorMessage = document.getElementById('error-message') as HTMLDivElement;
+  const successMessage = document.getElementById('success-message') as HTMLDivElement;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const formData = new FormData(form);
+    const name = formData.get('name') as string;
+    const email = formData.get('email') as string;
+    const password = formData.get('password') as string;
+
+    try {
+      errorMessage.classList.add('hidden');
+      successMessage.classList.add('hidden');
+      
+      const result = await authClient.signUp.email({
+        email,
+        password,
+        name,
+      });
+
+      if (result.error) {
+        errorMessage.textContent = result.error.message || 'Sign up failed';
+        errorMessage.classList.remove('hidden');
+      } else {
+        successMessage.textContent = 'Account created successfully! Redirecting to app...';
+        successMessage.classList.remove('hidden');
+        setTimeout(() => {
+          window.location.href = '/app';
+        }, 1500);
+      }
+    } catch (error) {
+      errorMessage.textContent = 'An error occurred. Please try again.';
+      errorMessage.classList.remove('hidden');
+    }
+  });
+</script>

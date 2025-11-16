@@ -1,0 +1,86 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { auth } from '../lib/auth';
+
+const session = await auth.api.getSession({
+  headers: Astro.request.headers,
+});
+
+if (!session) {
+  return Astro.redirect('/login');
+}
+
+const user = session.user;
+---
+
+<Layout title="App - GoBig">
+  <div class="min-h-screen bg-gray-900">
+    <nav class="bg-gray-800 shadow-lg">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+          <div class="flex items-center">
+            <h1 class="text-2xl font-bold text-white">GoBig App</h1>
+          </div>
+          <div class="flex items-center space-x-4">
+            <span class="text-gray-300">Welcome, {user.name}!</span>
+            <button
+              id="logout-btn"
+              class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+            >
+              Logout
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+      <div class="px-4 py-6 sm:px-0">
+        <div class="border-4 border-dashed border-gray-700 rounded-lg p-8">
+          <h2 class="text-3xl font-bold text-white mb-4">Dashboard</h2>
+          
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+            <div class="bg-gray-800 p-6 rounded-lg shadow">
+              <h3 class="text-xl font-semibold text-white mb-2">User Info</h3>
+              <p class="text-gray-300">Email: {user.email}</p>
+              <p class="text-gray-300">ID: {user.id}</p>
+            </div>
+            
+            <div class="bg-gray-800 p-6 rounded-lg shadow">
+              <h3 class="text-xl font-semibold text-white mb-2">Features</h3>
+              <ul class="text-gray-300 space-y-1">
+                <li>✓ Authentication</li>
+                <li>✓ Database</li>
+                <li>✓ Styling</li>
+              </ul>
+            </div>
+            
+            <div class="bg-gray-800 p-6 rounded-lg shadow">
+              <h3 class="text-xl font-semibold text-white mb-2">Quick Links</h3>
+              <ul class="text-gray-300 space-y-2">
+                <li><a href="/" class="text-indigo-400 hover:text-indigo-300">Home</a></li>
+                <li><a href="#" class="text-indigo-400 hover:text-indigo-300">Settings</a></li>
+                <li><a href="#" class="text-indigo-400 hover:text-indigo-300">Profile</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</Layout>
+
+<script>
+  import { authClient } from '../lib/auth-client';
+
+  const logoutBtn = document.getElementById('logout-btn');
+  
+  logoutBtn?.addEventListener('click', async () => {
+    try {
+      await authClient.signOut();
+      window.location.href = '/';
+    } catch (error) {
+      console.error('Logout failed:', error);
+    }
+  });
+</script>
