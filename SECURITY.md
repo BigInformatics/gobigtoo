@@ -54,14 +54,11 @@ The following moderate-severity vulnerabilities exist in development dependencie
 
 1. **Update Dependencies**
    ```bash
-   npm update
-   npm audit fix
+   bun update
    ```
 
 2. **Review Security**
-   ```bash
-   npm audit
-   ```
+   Check for vulnerabilities in dependencies regularly
 
 3. **Set Strong Secrets**
    - Generate a strong `BETTER_AUTH_SECRET` (use `openssl rand -base64 32`)
@@ -122,9 +119,9 @@ Set up automated vulnerability scanning:
    - Automatically creates PRs for security updates
    - Enable in repository settings
 
-2. **npm audit**
-   - Run regularly: `npm audit`
-   - Fix issues: `npm audit fix`
+2. **Bun updates**
+   - Keep Bun runtime updated: `bun upgrade`
+   - Monitor dependency security regularly
 
 3. **Snyk or similar**
    - Consider third-party scanning tools

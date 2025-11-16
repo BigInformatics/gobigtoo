@@ -239,11 +239,19 @@ STRIPE_WEBHOOK_SECRET=
 
 ### Development
 ```bash
+# Using Bun (recommended)
+bun run dev
+
+# Or using npm
 npm run dev
 ```
 
 ### Production Build
 ```bash
+# Using Bun (recommended)
+bun run build
+
+# Or using npm
 npm run build
 ```
 
@@ -253,6 +261,10 @@ Output in `dist/`:
 
 ### Preview Production
 ```bash
+# Using Bun (recommended)
+bun run preview
+
+# Or using npm
 npm run preview
 ```
 
@@ -322,8 +334,8 @@ export const auth = betterAuth({
 
 ### Adding Database Tables
 1. Define schema in `src/db/schema.ts`
-2. Run `npm run db:generate`
-3. Run `npm run db:push`
+2. Run `bun run db:generate` (or `npm run db:generate`)
+3. Run `bun run db:push` (or `npm run db:push`)
 
 ### Adding React Components
 1. Create `.tsx` file in `src/components/`
@@ -347,12 +359,12 @@ Potential additions:
 ## Troubleshooting
 
 ### Build Fails
-- Check TypeScript errors: `npm run astro check`
+- Check TypeScript errors: `bun run astro check` (or `npm run astro check`)
 - Clear cache: `rm -rf .astro dist`
 
 ### Database Issues
-- Reset database: `rm local.db && npm run db:push`
-- View schema: `npm run db:studio`
+- Reset database: `rm local.db && bun run db:push` (or `npm run db:push`)
+- View schema: `bun run db:studio` (or `npm run db:studio`)
 
 ### Authentication Issues
 - Check BETTER_AUTH_SECRET is set

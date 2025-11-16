@@ -11,7 +11,7 @@ Foundational framework for building apps in the organization.
 - **Chakra UI v3** - Component library
 - **Tailwind CSS** - Utility-first CSS framework
 - **TypeScript** - Type safety
-- **Bun/Node** - Runtime support
+- **Bun** - Fast JavaScript runtime
 
 ## Database Schema
 
@@ -26,8 +26,8 @@ Foundational framework for building apps in the organization.
 
 ### Prerequisites
 
-- Node.js 18+ or Bun
-- npm, pnpm, or bun
+- Bun 1.0+ (https://bun.sh) - Recommended
+- Or Node.js 18+ with npm as fallback
 
 ### Installation
 
@@ -39,9 +39,11 @@ cd gobig
 
 2. Install dependencies:
 ```bash
-npm install
-# or
+# Using Bun (recommended)
 bun install
+
+# Or using npm (fallback)
+npm install
 ```
 
 3. Set up environment variables:
@@ -52,6 +54,10 @@ cp .env.example .env
 
 4. Initialize the database:
 ```bash
+# Using Bun
+bun run db:push
+
+# Or using npm
 npm run db:push
 ```
 
@@ -60,19 +66,23 @@ npm run db:push
 Start the development server:
 
 ```bash
-npm run dev
-# or
+# Using Bun (recommended)
 bun run dev
+
+# Or using npm (fallback)
+npm run dev
 ```
 
 The application will be available at `http://localhost:4321`
 
 ## Database Management
 
-- **Generate migrations**: `npm run db:generate`
-- **Push schema**: `npm run db:push`
-- **Migrate**: `npm run db:migrate`
-- **Studio**: `npm run db:studio` - Open Drizzle Studio
+Use `bun run` or `npm run` for the following commands:
+
+- **Generate migrations**: `bun run db:generate` or `npm run db:generate`
+- **Push schema**: `bun run db:push` or `npm run db:push`
+- **Migrate**: `bun run db:migrate` or `npm run db:migrate`
+- **Studio**: `bun run db:studio` or `npm run db:studio` - Open Drizzle Studio
 
 ## Pages
 
@@ -88,6 +98,11 @@ The application will be available at `http://localhost:4321`
 ## Building for Production
 
 ```bash
+# Using Bun
+bun run build
+bun run preview
+
+# Or using npm
 npm run build
 npm run preview
 ```

@@ -4,7 +4,13 @@ This document outlines how to test the GoBig baseline template.
 
 ## Prerequisites
 
+Install dependencies using Bun (recommended) or npm:
+
 ```bash
+# Using Bun (recommended)
+bun install
+
+# Or using npm
 npm install
 ```
 
@@ -22,6 +28,10 @@ cp .env.example .env
 Initialize the database:
 
 ```bash
+# Using Bun
+bun run db:push
+
+# Or using npm
 npm run db:push
 ```
 
@@ -30,6 +40,10 @@ npm run db:push
 Start the development server:
 
 ```bash
+# Using Bun (recommended)
+bun run dev
+
+# Or using npm
 npm run dev
 ```
 
@@ -80,6 +94,10 @@ Note: Email verification requires SMTP configuration in production. For local de
 Build the project for production:
 
 ```bash
+# Using Bun
+bun run build
+
+# Or using npm
 npm run build
 ```
 
@@ -88,6 +106,10 @@ Verify the build completes without errors.
 Preview the production build:
 
 ```bash
+# Using Bun
+bun run preview
+
+# Or using npm
 npm run preview
 ```
 
@@ -95,16 +117,22 @@ npm run preview
 
 ### View Database Studio
 ```bash
+bun run db:studio
+# or
 npm run db:studio
 ```
 
 ### Generate New Migrations
 ```bash
+bun run db:generate
+# or
 npm run db:generate
 ```
 
 ### Apply Migrations
 ```bash
+bun run db:push
+# or
 npm run db:push
 ```
 
