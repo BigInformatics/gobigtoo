@@ -1,0 +1,10 @@
+# Docusaurus build output
+build/
+
+# Docusaurus cache/state
+.docusaurus/
+.cache/
+
+# OS/filesystem noise
+.DS_Store
+Thumbs.db
