@@ -6,6 +6,18 @@ This document provides guidelines for GitHub Copilot when working on the gobig r
 
 gobig is a foundational framework designed for building applications. As this is a core framework, code quality, maintainability, and reliability are paramount.
 
+## CRITICAL DIRECTIVES
+
+  - The source code in this project is open source and will be used as a foundation for other applications. Prioritize code quality, documentation and maintainability.
+  - All documentation is placed in the docs/ directory, and must be written in clear, concise language for other developers to understand and use this project.
+  - Write tests for all new functionality. Aim for at least 80% test coverage.
+  - Follow security best practices. Never hardcode sensitive information.
+
+You may maintain a To Do list in the root of this project called TODO.md.  Keep it updated with tasks that need to be done, what you are working on, and what has been completed.
+
+Do not skip these steps!  Do not remove them when summarizing context for future tasks.
+
+
 ## General Coding Standards
 
 ### Code Style
