@@ -35,7 +35,6 @@ const config: Config = {
   ],
   plugins: [require.resolve('@easyops-cn/docusaurus-search-local')],
   themeConfig: {
-    image: 'img/social-card.png',
     navbar: {
       title: 'GoBig',
       logo: {alt: 'GoBig', src: 'img/logo.svg'},
